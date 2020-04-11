@@ -8,8 +8,9 @@ export default function recipes(props) {
         <div>
             <h1>{props.title}</h1>
             <ul>
-                {props.ingredients.map(item => (
-                   <li>{item.text}</li> 
+                {/* use round brackets () after fat arrow if insertinng JSX */}
+                {props.ingredients.map((item, index) => (
+                   <li key={index} >{item.text}</li> 
                 ))}
             </ul>
             <p>{Math.round(props.calories)}</p>
