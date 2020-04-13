@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Recipes from './Recipes'
 import SearchBar from './SearchBar'
+import { v4 as uuidv4 } from 'uuid';
+
+import RecipeDetails from './RecipeDetails';
 
 
 function ContainRecipeApp() {
@@ -56,14 +59,19 @@ function ContainRecipeApp() {
                 getSearch={getSearch} 
             />
         
+        <RecipeDetails />
+
         
             {recipes.map(item => (
                 <Recipes 
-                key={item.recipe.label}
-                title={item.recipe.label} 
-                calories={item.recipe.calories} 
-                image={item.recipe.image}
-                ingredients={item.recipe.ingredients} />
+                    key={uuidv4()}
+                    title={item.recipe.label} 
+                    calories={item.recipe.calories} 
+                    image={item.recipe.image}
+                    ingredients={item.recipe.ingredients} 
+                    url={item.recipe.url}
+                    serving={item.recipe.yield}
+                />
             ))}
     
         </div>

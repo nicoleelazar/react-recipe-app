@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2&display=swap');
+
+
+:root {
+    --c-gold: rgb(212,175,55);
+    /* --c-feature: rgb(71, 134, 216); */
+    --c-feature: rgb(134, 173, 224);
+    --c-white: rgb(255, 255, 255);
+    --font-main: 'Baloo Paaji 2', cursive;
+}
+
+body {
+    font-family: var(--font-main);
+}
+
+.cross {
+    position: absolute;
+    font-size: 25px;
+    top: 0;
+    right: 10px;
+    color: var(--c-feature);
+    z-index: 60;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.modal-back {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    background-color: var(--c-feature);
+}
+
+.modal-box {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    z-index: 55;
+    background-color: var(--c-white);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+
+}
+
+.flex-container {
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.flex-item {
+    /* background-color: thistle; */
+    padding: 10px;
+    margin: 20px;
+    width: 100%;
+    /* height: 100%; */
+
+}
+
+.image-container {
+    /* background-color: tomato; */
+    width: 100%;
+    height: 70%;
+   
+}
+
+.picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.portion-info {
+    color: var(--c-gold);
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.break-line {
+    border: solid 0.3px var(--c-gold);
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.title {
+    color: var(--c-feature);
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.fa-utensils {
+    margin-left: 15px;
+}
+
+.ingredient-list {
+    color: slategray;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.recipe-name {
+    color: var(--c-feature);
+    padding-top: 5px;
+}
+
+.button {
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 60px;
+    border: none;
+    color: var(--c-white);
+    background-color: var(--c-feature); 
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    font-size: 20px;
+}
