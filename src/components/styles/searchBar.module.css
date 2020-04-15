@@ -1,0 +1,36 @@
+.pageHeading {
+    font-family: var(--font-feature);
+    color: var(--c-blue-dark);
+    font-size: 35px;
+    margin-left: 5%;
+}
+
+.form {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.bar {
+    border: none;
+    width: 50%;
+    padding: 10px;
+    background-color: white;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    background-color: var(--c-blue-dark);
+    color: var(--c-white);
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    box-shadow: var(--shadow);
+}

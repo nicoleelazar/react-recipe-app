@@ -1,0 +1,142 @@
+/* modals -------------------------*/
+
+.body {
+    overflow: hidden;
+}
+
+
+.cross {
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    right: 20px;
+    color: var(--c-blue-dark);
+    z-index: 60;
+    cursor: pointer;
+}
+
+.modalWrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.modalBack {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    background-color: var(--c-background);
+}
+
+.modalBox {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    z-index: 55;
+    background-color: var(--c-white);
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+
+}
+
+
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 50px;
+    
+}
+
+.flexItem {
+    /* background-color: thistle; */
+    padding: 10px;
+    margin: 20px;
+    width: 100%;
+    /* height: 100%; */
+
+}
+
+.imageContainer {
+    /* background-color: tomato; */
+    width: 100%;
+    height: 70%;
+   
+}
+
+.picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.portionInfo {
+    color: var(--c-gold);
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.breakLine {
+    border: solid 0.3px var(--c-gold);
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.title {
+    color: var(--c-blue-dark);
+    font-size: 22px;
+    text-transform: uppercase;
+    
+}
+
+
+.ingredientList {
+    color: var(--c-grey);
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.recipeName {
+    color: var(--c-blue-dark);
+    padding-top: 5px;
+}
+
+
+@media only screen and (max-width: 1300px) {
+    .modalBox {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+   
+    .modalBox {
+        width: 95%;
+    }
+
+    .flexContainer {
+        display: block;
+        padding: 20px;
+        padding-top: 60px;
+    }
+
+    .flexItem {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/* disable body scroll */
+body {
+    overflow: hidden;
+}
