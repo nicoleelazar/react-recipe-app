@@ -21,7 +21,14 @@ body {
     overflow: auto;
 }
 
-
+.alert-msg {
+    font-size: 20px;
+    color: var(--c-grey);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
 .fa-utensils {
     padding-left: 15px;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Recipes from './Recipes'
 import SearchBar from './SearchBar'
+import Alert from './Alert'
+
 import { v4 as uuidv4 } from 'uuid';
 import styles from './styles/recipes.module.css'
-
-import RecipeDetails from './RecipeDetails';
 
 
 function ContainRecipeApp() {
@@ -18,24 +18,41 @@ function ContainRecipeApp() {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("chicken")
+    const [alert, setAlert] = useState("")
 
-    const example = `https://api.edamam.com/search?q=${query}&app_id=${client.APP_ID}&app_key=${client.APP_KEY}`
+    const url = `https://api.edamam.com/search?q=${query}&app_id=${client.APP_ID}&app_key=${client.APP_KEY}`
 
 
     //if input in [] is left empty, useEffect only runs once on mount rather than on each refresh of useState
     useEffect(() => {
-    getRecipes();
+        getRecipes();
     //runs only when submit button is clicked
     }, [query]) 
 
 
     //promise
     const getRecipes = async () => {
-    const response = await fetch(example)
-    const data = await response.json()
-    setRecipes(data.hits)
-    }
 
+        if (query !== "") {
+            const response = await fetch(url)
+            const data = await response.json()
+
+            // 'more' is a true/false value on the fetched recipe object
+            if(!data.more) {
+                setRecipes([])
+                return setAlert("No matches found")
+            }
+
+            setRecipes(data.hits)
+            setAlert("")
+        }
+
+        else {
+            setAlert("Please enter an ingredient")
+            setRecipes([])
+        }
+
+    }
 
 
     const updateSearch = (event) => {
@@ -51,6 +68,9 @@ function ContainRecipeApp() {
 
     setSearch("")
     }
+
+
+    
       
     return (
         <div>
@@ -59,8 +79,10 @@ function ContainRecipeApp() {
                 updateSearch={updateSearch}
                 getSearch={getSearch} 
             />
-        
-        {/* <RecipeDetails /> */}
+    
+
+           <Alert alert={alert} query={query} />
+
 
             <div className={styles.containerMain}>
                 {recipes.map(item => (
@@ -70,11 +92,16 @@ function ContainRecipeApp() {
                         calories={item.recipe.calories} 
                         image={item.recipe.image}
                         ingredients={item.recipe.ingredients} 
-                        url={item.recipe.url}
+                        site={item.recipe.url}
                         serving={item.recipe.yield}
+                        
                     />
                 ))}
             </div>
+
+
+            
+
         </div>
     );
 }
