@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import RecipeDetails from './RecipeDetails';
-import { v4 as uuidv4 } from 'uuid';
 import styles from './styles/recipes.module.css'
 
 
@@ -21,7 +20,7 @@ export const Recipes = ({title, image, calories, ingredients, site, serving}) =>
 
     return (
         <div>
-                <div className={styles.tileCard}>
+            <div className={styles.tileCard}>
                 <div className={styles.containerPicture}>
                     <img className={styles.picture} src={image} />
                 </div>
@@ -29,7 +28,10 @@ export const Recipes = ({title, image, calories, ingredients, site, serving}) =>
 
                 <button className="button" onClick={openModal} >See Details</button>
                 
-                {modal && <RecipeDetails
+                
+            </div>
+
+            {modal && <RecipeDetails
                     closeModal={closeModal}
                     title={title}
                     image={image}
@@ -38,23 +40,7 @@ export const Recipes = ({title, image, calories, ingredients, site, serving}) =>
                     site={site}
                     serving={serving} 
                 /> }
-                    
-
-
-            </div>
            
-
-            {/* <h3>{props.url}</h3> */}
-            {/* <a href={props.url} target="_blank">URL</a> */}
-            {/* <h4>{props.yield}</h4> */}
-
-            {/* <ul> */}
-                {/* use round brackets () after fat arrow if insertinng JSX */}
-                {/* {props.ingredients.map((item) => (
-                   <li key={uuidv4()} >{item.text}</li> 
-                ))} */}
-            {/* </ul> */}
-            {/* <p>{Math.round(props.calories)}</p> */}
         </div>
     )
 }

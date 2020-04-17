@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Recipes from './Recipes'
 import SearchBar from './SearchBar'
 import Alert from './Alert'
-
 import { v4 as uuidv4 } from 'uuid';
 import styles from './styles/recipes.module.css'
 
@@ -17,7 +16,7 @@ function ContainRecipeApp() {
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
-    const [query, setQuery] = useState("chicken")
+    const [query, setQuery] = useState("potato")
     const [alert, setAlert] = useState("")
 
     const url = `https://api.edamam.com/search?q=${query}&app_id=${client.APP_ID}&app_key=${client.APP_KEY}`
