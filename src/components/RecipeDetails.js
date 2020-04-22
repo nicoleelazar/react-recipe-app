@@ -33,7 +33,7 @@ export const RecipeDetails = ({title, image, calories, ingredients, site, servin
                 <div className={styles.flexContainer}>
                     <div className={styles.flexItem}>
                         <div className={styles.imageContainer}>
-                            <img className={styles.picture} src={image} alt="food image"/>
+                            <img className={styles.picture} src={image} alt="food"/>
                         </div>
                         <h1 className={styles.recipeName}>{title}</h1>
                     </div>
