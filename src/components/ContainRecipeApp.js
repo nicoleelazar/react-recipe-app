@@ -16,90 +16,95 @@ function ContainRecipeApp() {
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
-    const [query, setQuery] = useState("potato")
+    const [query, setQuery] = useState("chocolate")
     const [alert, setAlert] = useState("")
 
-    const url = `https://api.edamam.com/search?q=${query}&app_id=${client.APP_ID}&app_key=${client.APP_KEY}`
-
+    // for v2 of edamam API
+    const url = `https:///api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${client.APP_ID}&app_key=${client.APP_KEY}`
 
     //if input in [] is left empty, useEffect only runs once on mount rather than on each refresh of useState
     useEffect(() => {
         getRecipes();
-    //runs only when submit button is clicked
-    }, [query]) 
+        //runs only when submit button is clicked
+    }, [query])
 
 
     //promise
     const getRecipes = async () => {
-
-        if (query !== "") {
-            const response = await fetch(url)
-            const data = await response.json()
-
-            // 'more' is a true/false value on the fetched recipe object
-            if(!data.more) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('There has been a network error. Please try again.');
+                }
+                return response.json()
+            })
+            .then(data => {
+                if (query !== "") {
+                    if (data.hits.length === 0) {
+                        setRecipes([])
+                        return setAlert("No matches found")
+                    }
+                    else {
+                        setRecipes(data.hits)
+                        setAlert("")
+                    }
+                }
+                else {
+                    setAlert("Please enter an ingredient")
+                    setRecipes([])
+                }
+            })
+            .catch(error => {
                 setRecipes([])
-                return setAlert("No matches found")
-            }
-
-            setRecipes(data.hits)
-            setAlert("")
-        }
-
-        else {
-            setAlert("Please enter an ingredient")
-            setRecipes([])
-        }
-
+                return setAlert("There has been an error. Please try again.")
+            })
     }
 
 
     const updateSearch = (event) => {
-    setSearch(event.target.value)
+        setSearch(event.target.value)
     }
 
 
     const getSearch = (event) => {
-    //stops refresh
-    event.preventDefault()
-    //gets finsihed text in input
-    setQuery(search)
+        //stops refresh
+        event.preventDefault()
+        //gets finsihed text in input
+        setQuery(search)
 
-    setSearch("")
+        setSearch("")
     }
 
 
-    
-      
     return (
         <div>
-            <SearchBar 
+            <SearchBar
                 search={search}
                 updateSearch={updateSearch}
-                getSearch={getSearch} 
+                getSearch={getSearch}
             />
-    
 
-           <Alert alert={alert} query={query} />
+
+            <Alert alert={alert} query={query} />
 
 
             <div className={styles.containerMain}>
                 {recipes.map(item => (
-                    <Recipes 
+                    <Recipes
                         key={uuidv4()}
-                        title={item.recipe.label} 
-                        calories={item.recipe.calories} 
+                        title={item.recipe.label}
+                        calories={item.recipe.calories}
                         image={item.recipe.image}
-                        ingredients={item.recipe.ingredients} 
+                        ingredients={item.recipe.ingredients}
                         site={item.recipe.url}
                         serving={item.recipe.yield}
-                        
+
                     />
                 ))}
             </div>
 
 
-            
+
 
         </div>
     );
