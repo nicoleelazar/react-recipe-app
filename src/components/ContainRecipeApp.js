@@ -34,7 +34,7 @@ function ContainRecipeApp() {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('There has been a network error. Please try again.');
+                    return setAlert("There has been an error. Please try again.")
                 }
                 return response.json()
             })
